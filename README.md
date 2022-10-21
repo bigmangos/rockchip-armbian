@@ -1,6 +1,6 @@
 # Armbian for Rockchip Boxes
 
-Currently `Rock5b` firmware is supported, using [unifreq's](https://github.com/unifreq) enhanced version of `bootloader` and the [latest kernel](https://github.com/unifreq/linux-rock5b), The system is modified to dual partition, and related applications and services in [amlogic-s9xxx-armbian](https://github.com/ophub/amlogic-s9xxx-armbian) are added. Support installation and use in `TF/USB/eMMC/NVME`.
+Currently `Rock5b` firmware is supported, using [unifreq's](https://github.com/unifreq) enhanced version of `bootloader` and the [latest kernel](https://github.com/unifreq/linux-rock5b), More applications and services in [amlogic-s9xxx-armbian](https://github.com/ophub/amlogic-s9xxx-armbian) have been added, which can be written to `TF/USB/eMMC/NVME` for use.
 
 The latest version of the Armbian firmware can be downloaded in [Releases](https://github.com/ophub/rockchip-armbian/releases).
 
@@ -10,12 +10,15 @@ Write the IMG file to the USB/TF hard disk through software such as [Rufus](http
 
 - ### Install Armbian to EMMC
 
-If you need `NVME` or `USB` to boot, you must first flash the [spi bootloader](build-armbian/u-boot/rock5b).
+If you need to use it in `NVME` or `USB`, you must use [the spi bootloader files downloaded here](build-armbian/u-boot/rock5b). Please refer to the official website for [the brushing method](https://wiki.radxa.com/Rock5/install/spi).
 
 Login in to armbian (default user: root, default password: 1234) → Upload the armbian image → input command:
 
 ```yaml
 dd if=armbian.img  of=/dev/<your_device_name>  bs=1M conv=fsync
+
+# For example, the write command in NVME is:
+# dd if=armbian.img  of=/dev/nvme0n1  bs=1M conv=fsync
 ```
 
 - ### Update Armbian Kernel
@@ -39,6 +42,13 @@ armbian-sync
 ```
 
 For more services, please check the instructions in the [amlogic-s9xxx-armbian](https://github.com/ophub/amlogic-s9xxx-armbian) repository. In the use of Armbian, please refer to [armbian-docs](https://github.com/ophub/amlogic-s9xxx-armbian/tree/main/build-armbian/armbian-docs) for some common problems that may be encountered.
+
+## Other distributions
+
+- The [amlogic-s9xxx-armbian](https://github.com/ophub/amlogic-s9xxx-armbian) project provides the `Armbian` system for `Amlogic` boxes. Welcome to use it.
+- The [amlogic-s9xxx-openwrt](https://github.com/ophub/amlogic-s9xxx-openwrt) project provides the `OpenWrt` system for `Amlogic` boxes. Welcome to use it.
+- [unifreq](https://github.com/unifreq/openwrt_packit) has made `OpenWrt` system for more boxes such as `Amlogic`, `Rockchip` and `Allwinner`, which is a benchmark in the box circle and is recommended for use.
+- [Scirese](https://github.com/Scirese/alarm) tested the production, installation and use of `Arch Linux ARM` / `Manjaro` system in the Android TV boxes, please refer to the relevant instructions in his repository for details.
 
 ## Links
 
